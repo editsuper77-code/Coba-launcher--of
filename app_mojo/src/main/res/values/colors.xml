@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="control_button_color">#4CC4C4C4</color>
+    <color name="control_button_pressed_color">#4D000000</color>
+
+    <color name="coba_primary">#7C3AED</color>
+    <color name="coba_primary_light">#A78BFA</color>
+    <color name="coba_accent">#22D3EE</color>
+    <color name="coba_blue">#3B82F6</color>
+    <color name="coba_surface">#0F1330</color>
+    <color name="coba_surface_alt">#151A40</color>
+    <color name="coba_stroke">#3B2F7A</color>
+
+    <color name="minebutton_color">#A78BFA</color>
+    <color name="minebutton_secondary">#1A1F4A</color>
+    <color name="background_app">#070A1F</color>
+    <color name="divider">@color/background_overlay</color>
+    <color name="background_overlay">#2A2F66</color>
+    <color name="background_status_bar">#0B0F2B</color>
+    <color name="background_bottom_bar">#0B0F2B</color>
+    <color name="icon_outline_color">#FFFFFF</color>
+
+    <color name="primary_text">#FFFFFF</color>
+    <color name="secondary_text">#A8B0D8</color>
+
+</resources>

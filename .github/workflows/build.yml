@@ -1,0 +1,29 @@
+name: Build APK
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fetch submodules
+        run: |
+          rm -rf glfw mojoexec sdl NoBlocklist
+          git clone --depth 1 https://github.com/MojoLauncher/glfw glfw
+          git clone --depth 1 https://github.com/MojoLauncher/mojoexec mojoexec
+          git clone --depth 1 https://github.com/MojoLauncher/MojoSDL sdl
+          git clone --depth 1 https://github.com/MojoLauncher/NoBlocklist NoBlocklist
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: "8.14.5"
+      - run: gradle :app_mojo:assembleFullDebug
+      - uses: actions/upload-artifact@v4
+        with:
+          name: COBA-Launcher-APK
+          path: app_mojo/build/outputs/apk/full/debug/*.apk

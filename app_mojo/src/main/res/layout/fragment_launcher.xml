@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:id="@+id/fragment_menu_main"
+	android:gravity="top"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical"
+	android:background="@drawable/coba_background">
+	<ScrollView
+		android:layout_width="match_parent"
+		android:layout_height="0dp"
+		android:clipToPadding="false"
+		android:padding="@dimen/_10sdp"
+		app:layout_constraintTop_toTopOf="parent"
+		app:layout_constraintBottom_toTopOf="@id/mc_version_spinner">
+		<androidx.constraintlayout.widget.ConstraintLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content">
+			<androidx.constraintlayout.widget.Guideline
+				android:id="@+id/center_guideline"
+				android:layout_width="0dp"
+				android:layout_height="0dp"
+				android:orientation="vertical"
+				app:layout_constraintGuide_percent="0.5"/>
+
+			<LinearLayout
+				android:id="@+id/hero_card"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:background="@drawable/background_hero"
+				android:gravity="center_horizontal"
+				android:orientation="vertical"
+				android:padding="@dimen/_16sdp"
+				app:layout_constraintTop_toTopOf="parent">
+				<ImageView
+					android:layout_width="@dimen/_52sdp"
+					android:layout_height="@dimen/_52sdp"
+					android:src="@drawable/ic_coba_logo" />
+				<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="@string/coba_hero_title"
+					android:textColor="@color/primary_text"
+					android:textStyle="bold"
+					android:textSize="@dimen/_13ssp" />
+				<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="@string/coba_login_subtitle"
+					android:textColor="@color/secondary_text"
+					android:textSize="@dimen/_12ssp" />
+				<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_marginTop="@dimen/_4sdp"
+					android:text="@string/coba_change_background"
+					android:textColor="@color/coba_accent"
+					android:textSize="@dimen/_12ssp" />
+			</LinearLayout>
+
+			<TextView
+				android:id="@+id/system_info_text"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="@dimen/_10sdp"
+				android:background="@drawable/background_card"
+				android:lineSpacingExtra="@dimen/_2sdp"
+				android:padding="@dimen/_12sdp"
+				android:textColor="@color/primary_text"
+				android:textSize="@dimen/_12ssp"
+				app:layout_constraintTop_toBottomOf="@id/hero_card"
+				tools:text="RAM 4.0 GB / 8.0 GB\nJava 21" />
+
+			<LinearLayout
+				android:id="@+id/performance_card"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="@dimen/_10sdp"
+				android:background="@drawable/background_card"
+				android:orientation="vertical"
+				android:padding="@dimen/_12sdp"
+				app:layout_constraintTop_toBottomOf="@id/system_info_text">
+				<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="@string/coba_performance"
+					android:textColor="@color/primary_text"
+					android:textStyle="bold"
+					android:textSize="@dimen/_13ssp" />
+				<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_marginTop="@dimen/_8sdp"
+					android:orientation="horizontal">
+					<com.kdt.mcgui.MineButton
+						android:id="@+id/preset_balanced"
+						android:layout_width="0dp"
+						android:layout_height="wrap_content"
+						android:layout_weight="1"
+						android:layout_marginEnd="@dimen/_2sdp"
+						android:text="@string/coba_preset_balanced"
+						android:textSize="@dimen/_12ssp" />
+					<com.kdt.mcgui.MineButton
+						android:id="@+id/preset_performance"
+						android:layout_width="0dp"
+						android:layout_height="wrap_content"
+						android:layout_weight="1"
+						android:layout_marginHorizontal="@dimen/_2sdp"
+						android:text="@string/coba_preset_performance"
+						android:textSize="@dimen/_12ssp" />
+					<com.kdt.mcgui.MineButton
+						android:id="@+id/preset_extreme"
+						android:layout_width="0dp"
+						android:layout_height="wrap_content"
+						android:layout_weight="1"
+						android:layout_marginStart="@dimen/_2sdp"
+						android:text="@string/coba_preset_extreme"
+						android:textSize="@dimen/_12ssp" />
+				</LinearLayout>
+				<TextView
+					android:id="@+id/ram_label"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_marginTop="@dimen/_10sdp"
+					android:textColor="@color/secondary_text"
+					android:textSize="@dimen/_12ssp" />
+				<SeekBar
+					android:id="@+id/ram_seekbar"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content" />
+				<TextView
+					android:id="@+id/res_label"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_marginTop="@dimen/_6sdp"
+					android:textColor="@color/secondary_text"
+					android:textSize="@dimen/_12ssp" />
+				<SeekBar
+					android:id="@+id/res_seekbar"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content" />
+			</LinearLayout>
+
+			<com.kdt.mcgui.LauncherMenuButton
+				android:id="@+id/versions_button"
+				style="@style/LauncherMenuButton.Universal"
+				android:layout_width="0dp"
+				android:layout_marginTop="@dimen/_10sdp"
+				android:layout_marginEnd="@dimen/_4sdp"
+				android:background="@drawable/background_card"
+				android:text="@string/coba_versions"
+				android:drawableStart="@drawable/ic_add"
+				app:layout_constraintTop_toBottomOf="@id/performance_card"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintEnd_toEndOf="@id/center_guideline" />
+			<com.kdt.mcgui.LauncherMenuButton
+				android:id="@+id/modpacks_button"
+				style="@style/LauncherMenuButton.Universal"
+				android:layout_width="0dp"
+				android:layout_marginTop="@dimen/_10sdp"
+				android:layout_marginStart="@dimen/_4sdp"
+				android:background="@drawable/background_card"
+				android:text="@string/coba_modpacks"
+				android:drawableStart="@drawable/ic_px_file_dl"
+				app:layout_constraintTop_toBottomOf="@id/performance_card"
+				app:layout_constraintStart_toStartOf="@id/center_guideline"
+				app:layout_constraintEnd_toEndOf="parent" />
+
+			<com.kdt.mcgui.LauncherMenuButton
+				android:id="@+id/news_button"
+				style="@style/LauncherMenuButton.Universal"
+				android:layout_width="0dp"
+				android:layout_marginTop="@dimen/_8sdp"
+				android:layout_marginEnd="@dimen/_4sdp"
+				android:background="@drawable/background_card"
+				android:text="@string/mcl_tab_wiki"
+				android:drawableStart="@drawable/ic_px_book"
+				app:layout_constraintTop_toBottomOf="@id/versions_button"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintEnd_toEndOf="@id/center_guideline" />
+			<View
+				android:id="@+id/social_divider"
+				android:layout_width="0dp"
+				android:layout_height="0dp"
+				android:visibility="invisible"
+				app:layout_constraintTop_toTopOf="@id/news_button"
+				app:layout_constraintStart_toStartOf="@id/center_guideline"
+				app:layout_constraintEnd_toEndOf="@id/center_guideline"
+				app:layout_constraintBottom_toBottomOf="@id/news_button"/>
+			<com.kdt.mcgui.LauncherMenuButton
+				android:id="@+id/social_media_button"
+				style="@style/LauncherMenuButton.Universal"
+				android:layout_width="0dp"
+				android:layout_marginTop="@dimen/_8sdp"
+				android:layout_marginStart="@dimen/_4sdp"
+				android:background="@drawable/background_card"
+				android:text="@string/mcl_button_social_media"
+				android:drawableStart="@drawable/ic_social_media"
+				app:layout_constraintTop_toBottomOf="@id/modpacks_button"
+				app:layout_constraintStart_toStartOf="@id/center_guideline"
+				app:layout_constraintEnd_toEndOf="parent"/>
+
+			<com.kdt.mcgui.LauncherMenuButton
+				android:id="@+id/custom_control_button"
+				style="@style/LauncherMenuButton.Universal"
+				android:layout_width="match_parent"
+				android:layout_marginTop="@dimen/_8sdp"
+				android:background="@drawable/background_card"
+				android:drawableStart="@drawable/ic_px_gamepad"
+				android:text="@string/mcl_option_customcontrol"
+				app:layout_constraintTop_toBottomOf="@id/news_button" />
+
+			<com.kdt.mcgui.LauncherMenuButton
+				android:id="@+id/install_jar_button"
+				style="@style/LauncherMenuButton.Universal"
+				android:layout_width="match_parent"
+				android:layout_marginTop="@dimen/_8sdp"
+				android:background="@drawable/background_card"
+				android:drawableStart="@drawable/ic_px_java_run"
+				android:text="@string/main_install_jar_file"
+				app:layout_constraintTop_toBottomOf="@id/custom_control_button" />
+
+			<com.kdt.mcgui.LauncherMenuButton
+				android:id="@+id/share_logs_button"
+				style="@style/LauncherMenuButton.Universal"
+				android:layout_width="match_parent"
+				android:layout_marginTop="@dimen/_8sdp"
+				android:background="@drawable/background_card"
+				android:drawableStart="@drawable/ic_px_sharelog"
+				android:text="@string/main_share_logs"
+				app:layout_constraintTop_toBottomOf="@id/install_jar_button" />
+
+			<com.kdt.mcgui.LauncherMenuButton
+				android:id="@+id/open_files_button"
+				style="@style/LauncherMenuButton.Universal"
+				android:layout_width="match_parent"
+				android:layout_marginTop="@dimen/_8sdp"
+				android:background="@drawable/background_card"
+				android:drawableStart="@drawable/ic_px_folder"
+				android:text="@string/mcl_button_open_directory"
+				app:layout_constraintTop_toBottomOf="@id/share_logs_button" />
+		</androidx.constraintlayout.widget.ConstraintLayout>
+	</ScrollView>
+
+	<com.kdt.mcgui.mcVersionSpinner
+		android:id="@+id/mc_version_spinner"
+		android:layout_width="0dp"
+		android:layout_height="@dimen/_52sdp"
+		android:background="@android:color/transparent"
+		android:drawableEnd="@drawable/spinner_arrow"
+
+		app:drawableEndSize="@dimen/padding_heavy"
+		app:drawableStartIntegerScaling="true"
+		app:drawableStartSize="@dimen/_36sdp"
+		app:drawableEndPadding="@dimen/_1sdp"
+
+		app:layout_constraintBottom_toTopOf="@id/play_button"
+		app:layout_constraintEnd_toStartOf="@+id/edit_profile_button"
+		app:layout_constraintStart_toStartOf="parent" />
+
+	<ImageButton
+		android:id="@+id/edit_profile_button"
+		android:layout_width="@dimen/_52sdp"
+		android:layout_height="@dimen/_52sdp"
+		android:background="?android:attr/selectableItemBackground"
+		android:src="@drawable/ic_px_edit"
+		app:layout_constraintBottom_toBottomOf="@+id/mc_version_spinner"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintTop_toTopOf="@+id/mc_version_spinner" />
+
+	<View
+		android:id="@+id/_background_display_view"
+		android:layout_width="match_parent"
+		android:layout_height="0dp"
+		android:background="@color/background_bottom_bar"
+		android:translationZ="-1dp"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintTop_toTopOf="@id/mc_version_spinner" />
+
+	<com.kdt.mcgui.MineButton
+		android:id="@+id/play_button"
+		android:layout_width="match_parent"
+		android:layout_height="@dimen/_62sdp"
+		android:layout_marginHorizontal="@dimen/_17sdp"
+		android:layout_marginBottom="@dimen/_15sdp"
+		android:textAllCaps="true"
+		android:text="@string/main_play"
+		app:layout_constraintBottom_toBottomOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
