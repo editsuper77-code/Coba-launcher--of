@@ -8,13 +8,12 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v4
-      - name: Fetch submodules
+      - name: Fetch submodules (upstream pinned versions)
         run: |
+          git clone --depth 1 --branch v3_openjdk --recurse-submodules --shallow-submodules https://github.com/MojoLauncher/MojoLauncher /tmp/up
           rm -rf glfw mojoexec sdl NoBlocklist
-          git clone --depth 1 https://github.com/MojoLauncher/glfw glfw
-          git clone --depth 1 https://github.com/MojoLauncher/mojoexec mojoexec
-          git clone --depth 1 https://github.com/MojoLauncher/MojoSDL sdl
-          git clone --depth 1 https://github.com/MojoLauncher/NoBlocklist NoBlocklist
+          cp -r /tmp/up/glfw /tmp/up/mojoexec /tmp/up/sdl /tmp/up/NoBlocklist .
+          find glfw mojoexec sdl NoBlocklist -type f | wc -l
       - uses: actions/setup-java@v4
         with:
           distribution: temurin
