@@ -8,12 +8,30 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v4
-      - name: Fetch submodules (upstream pinned versions)
+      - name: Fetch native parts (auto-detect right branch)
         run: |
-          git clone --depth 1 --branch v3_openjdk --recurse-submodules --shallow-submodules https://github.com/MojoLauncher/MojoLauncher /tmp/up
           rm -rf glfw mojoexec sdl NoBlocklist
-          cp -r /tmp/up/glfw /tmp/up/mojoexec /tmp/up/sdl /tmp/up/NoBlocklist .
-          find glfw mojoexec sdl NoBlocklist -type f | wc -l
+          fetch_dep() {
+            repo=$1; dest=$2; pat=$3
+            git clone --filter=blob:none --no-checkout "https://github.com/MojoLauncher/$repo" "$dest"
+            cd "$dest"
+            found=""
+            for ref in $(git for-each-ref --sort=-committerdate --format='%(refname)' refs/remotes/origin | grep -v HEAD); do
+              if git grep -q -E "$pat" "$ref" -- jni_bindings; then found=$ref; break; fi
+            done
+            echo "== $repo -> ${found:-NOT FOUND}"
+            if [ -z "$found" ]; then
+              git for-each-ref --format='%(refname)' refs/remotes/origin
+              found=refs/remotes/origin/HEAD
+            fi
+            git checkout -q "$found"
+            git log -1 --oneline
+            cd "$GITHUB_WORKSPACE"
+          }
+          fetch_dep mojoexec mojoexec 'setUseTurnip'
+          fetch_dep MojoSDL sdl 'onNativeMouseButton\([^)]*float'
+          git clone --depth 1 https://github.com/MojoLauncher/glfw glfw
+          git clone --depth 1 https://github.com/MojoLauncher/NoBlocklist NoBlocklist
       - uses: actions/setup-java@v4
         with:
           distribution: temurin
